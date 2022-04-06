@@ -1,7 +1,25 @@
 # Next JS Intro
 ## 1. Start
 - vscode 진행
-- node 버전 낮으면 윈도우라면 최신버전 설치하면 덮어씀
+### 1.1 확장설치
+- 개인적으로 사용하던것들 몇개 씀 / 재설치하면 이것만 깔자..
+- colorize
+- auto rename tag
+- eslint
+- korea language pack
+- liveserver
+- restclient
+- highlightmatching tag
+- path autoclmplete
+- powershell
+- prettier - codeformatter
+- visual studio intellicode
+- vscode-styled-components
+- styled-jsx Language server
+- graphql, prisma 는 사용할때 깔자 
+
+### 1.2 node 
+- 버전 낮으면 윈도우라면 최신버전 설치하면 덮어씀
 - npm 도 버전낮으면 글로벌로 다시 설치해주자
 - nextjs 프로젝트 생성
 ``` 생성
@@ -24,7 +42,7 @@ npx create-next-app@latest
 - a 태그로 링크하면 안됨 nextjs 에서 제공하는 link태그 사용 / 경고메시지 나옴
 ---
 ## 5. Style
-### 5.1 module css
+### 5.1. module css
  name.module.css 파일 생성
 ```module.css
 .active{
@@ -50,7 +68,7 @@ export default function NavBar() {
 }
 
 ```      
-### 5.2 StyleJSX
+### 5.2. StyleJSX
 - NEXTJS고유 방법
 - stylejsx 사용 시 고유 id값으로 클래스명 충돌없이 사용 가능 
 - Global style global prop 추가하면 글로벌됨
@@ -84,9 +102,26 @@ export default function NavBar() {
   );
 }
 ```
+ - rewrites
+ const nextConfig = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/api/movies',
+        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+      },
+      {
+        source: '/api/movies/:id',
+        destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`,
+      },
+    ];
+  },
+};
 ---
 
 ## 6. _app.js
+- nextjs 는 하나의 거대한 페이지가 아니라 각각의 페이지라고 생각하고 해야함
 - nextjs 가 _app.js 먼저 확인
 - 기본적인 형태
 ```
@@ -96,6 +131,126 @@ export default function App({ Component, pageProps }) {
 ```
 - globals.css 는 _app.js 만 import 가능
 
+## 7. React
+- rehydration/ next pre-generation 하여 html 을 사전생성
+
+## 8. Patterns
+ - 일반적으로 _app.js 공통적인 많은 것들이 들어 있어서 Layout 따로 만들어서 진행한다.
+
+### 9. img
+ - public 경로 img 가져 오기 
+ ```
+ <img src="/vercel.svg" />
+ ```
+
+## 10. Redirect and Rewrite (next.config.js)
+ - nextjs 설정파일 
+ - key 값을 바로 사용하면 노출되니 rewrite 로 숨김처리
+ - 수정 시 서버 재시작 필요
+### 10.1. redirect 
+- 고정값고 가능하고 path로 캐치도 가능하며, * 전체 가능
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/contact',
+        destination: '/form',
+        permanent: false,
+      },
+      {
+        source: "/old-blog/:path*",
+        destination: "/new-sexy-blog/:path*",
+        permanent: false,
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+```
+### 10.2. rewrite
+- rewrite 를 통한 key 와 요청 mask 처리
+```
+/** @type {import('next').NextConfig} */
+
+const API_KEY = process.env.API_KEY;
+
+const nextConfig = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/api/movies',
+        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+      },
+      {
+        source: '/api/movies/:id',
+        destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`,
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+
+```
+### env
+- env 사용은 .env 루트에 파일 생성하고 key=value 형태로 문자열로 받아와서 사용할 수 있음
+- ex) process.env.API_KEY
+```
+.env
+API_KEY=abcd
+
+test.js
+const API_KEY = process.env.API_KEY;
+```
+
+## 11. getServerSideProps (이름고정) 서버사이드렌더링
+- 프레임워크 없이 reactjs 사용하면 클라이언트 사이드 렌더링으로 초기에 로딩이 오래걸리고 하얀 화면으로 대기
+- nextjs는 기본적으로 미리 그려진 html 을 보여줘서 더 나은 사용자 경험 제공
+- 백엔드에서 실행하는 소스코드
+- _app.js 의 pageProps 객체에 넣어서 렌더링
+
+## 12. Dynamic Routes(주소에 변수)
+- 기본적으로 pages 디렉토리에 폴더를 만들고 js 파일만들면 그게 url 경로가됨
+- [변수명].js 로 만들면 id를 받을 수있음 
+- ex) pages/movies/[id].js /movies/123 
+- id값은 router 의 query 를 통해서 문자열값으로 추출 가능
+```
+import { useRouter } from 'next/router';
+
+export default function Detaile() {
+  const router = useRouter();
+  console.log(router);
+  return (
+    <div>
+      <h4>{router.query.id || 'Loading..'}</h4>
+    </div>
+  );
+}
+
+```
+### 12.1. Catch All
+- [...변수명].js 로 만들면 array 로 query 전달 가능
+- 
+
+### 12.2 
+- seo 최적화 하고 싶다면 detaile 페이지도 서버사이드렌더링을 통해서 전달하도록 한다.
+- query 로 받아서 props 를 사용하면 serverside 렌더링이 아니라서 오류
+
+## ctx
+- context 확인
+```
+export function getServerSideProps(ctx) {
+  console.log(ctx);
+  return {
+    props: {},
+  };
+}
+```
 
 ---------------
 ---------------
