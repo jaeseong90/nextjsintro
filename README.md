@@ -1,4 +1,5 @@
-# Next JS Intro
+# NextJS Basic
+
 ## 1. Start
 - vscode 진행
 ### 1.1 확장설치
