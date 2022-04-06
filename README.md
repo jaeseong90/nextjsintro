@@ -31,7 +31,7 @@ npx create-next-app@latest
 - pages 폴더에 .js 파일 url 로 호출됨 ( react 에서랑 다르게 routeDom 이 필요없네)
 - component 이름과 js파일명 달라도 관계없음
 - export default 로 export 해야함
-- 404 페이지 커스텀 가능 기본 있음
+- 404 페이지 커스텀 가능 기본 있음(404.js 루트에 만들면 해당 페이지)
 ---
 ## 3. Render
 - cf. noscript 자바스크립트 비활성화 시 보여주는 메시지
@@ -235,11 +235,9 @@ export default function Detaile() {
 ```
 ### 12.1. Catch All
 - [...변수명].js 로 만들면 array 로 query 전달 가능
-- 
-
-### 12.2 
 - seo 최적화 하고 싶다면 detaile 페이지도 서버사이드렌더링을 통해서 전달하도록 한다.
 - query 로 받아서 props 를 사용하면 serverside 렌더링이 아니라서 오류
+- ctx로 받아서 parms를 서버사이드 렌더링해서 넘겨서 pre-render 가능
 
 ## ctx
 - context 확인
