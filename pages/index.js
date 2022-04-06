@@ -4,12 +4,22 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Seo from './Seo';
 
-export default function Home({ movies }) {
+export default function Home() {
+  //export default function Home({ movies }) {
+
   const router = useRouter();
+  const [movies, setMovies] = useState([]);
 
   const onClick = (id, title) => {
     router.push(`/movies/${title}/${id}`);
   };
+
+  useEffect(() => {
+    (async () => {
+      const { results } = await (await fetch(`/api/movies`)).json();
+      setMovies(results);
+    })();
+  }, []);
 
   return (
     <div className="container">
@@ -56,11 +66,12 @@ export default function Home({ movies }) {
   );
 }
 
-export async function getServerSideProps() {
-  const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
-  return {
-    props: {
-      movies: results,
-    },
-  };
-}
+// export static error
+// export async function getServerSideProps() {
+//   const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
+//   return {
+//     props: {
+//       movies: results,
+//     },
+//   };
+// }

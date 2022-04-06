@@ -25,6 +25,9 @@ const nextConfig = {
       },
     ];
   },
+
+  assetPrefix:
+    process.env.NODE_ENV === 'production' ? 'https://jaeseong90.github.io/nextjsintro' : '',
 };
 
 module.exports = nextConfig;
