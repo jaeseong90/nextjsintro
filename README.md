@@ -262,6 +262,7 @@ export function getServerSideProps(ctx) {
 - github pages 에 gh-pages 브랜치 root 로 사용
 - next.config 동작 안해서 rewrites 와 redirects 모두 사용 안하고 수정
 - api 호출 노출되도록 변경 
+- 빈 .nojekyll 파일 gh-pages 에 있는지 확인 없으면 생성해줌
 
 ---------------
 ---------------
