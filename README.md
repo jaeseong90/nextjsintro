@@ -1,4 +1,5 @@
-# Next JS Intro
+# NextJS 실습 프로젝트 (nomadcoders 강의)
+
 ## 1. Start
 - vscode 진행
 ### 1.1 확장설치
