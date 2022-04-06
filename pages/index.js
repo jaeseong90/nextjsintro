@@ -5,8 +5,25 @@ import { useEffect, useState } from 'react';
 import Seo from './Seo';
 import { prefix } from '../config';
 
-export default function Home({ movies }) {
+export default function Home() {
+  //export default function Home({ movies }) {
+
   const router = useRouter();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { results } = await (
+        await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=1a3810937b0dde9cf8fcbaabd86871a7`,
+        )
+      ).json();
+      //const { results } = await (await fetch(`${prefix}/api/movies`)).json();
+      setMovies(results);
+      console.log(results);
+      console.log('results');
+    })();
+  }, []);
 
   const onClick = (id, title) => {
     router.push(`/movies/${title}/${id}`);
@@ -57,11 +74,11 @@ export default function Home({ movies }) {
   );
 }
 
-export async function getServerSideProps() {
-  const { results } = await (await fetch(`${prefix}/api/movies`)).json();
-  return {
-    props: {
-      movies: results,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const { results } = await (await fetch(`${prefix}/api/movies`)).json();
+//   return {
+//     props: {
+//       movies: results,
+//     },
+//   };
+// }

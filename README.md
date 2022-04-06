@@ -1,5 +1,4 @@
-# NextJS Basic
-
+# Next JS Intro
 ## 1. Start
 - vscode 진행
 ### 1.1 확장설치
@@ -250,6 +249,19 @@ export function getServerSideProps(ctx) {
   };
 }
 ```
+
+## github 배포
+아름다운 배포 방법이 있겠지만 gitgub pages 에 빠르게 배포해봄. 
+- yarn add gh-pages --dev 로 깃헙 페이지 배포 패키지 설치
+- 깃허브 배포는 정적 페이지니까 getServerSideProps 소스코드 모두 수정 
+- prefix 추가
+- .env 안올라가서 key 오픈
+- next build (.next) 에 빌드 
+- next export (out) 에 정적 페이지 생성
+- yarn gh-pages -d out 으로 pg-pages 에 배포 
+- github pages 에 gh-pages 브랜치 root 로 사용
+- next.config 동작 안해서 rewrites 와 redirects 모두 사용 안하고 수정
+- api 호출 노출되도록 변경 
 
 ---------------
 ---------------
