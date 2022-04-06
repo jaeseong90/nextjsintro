@@ -5,16 +5,16 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/HN-yqxagankQi7yPCR-BA/_buildManifest.js",
-    "static/HN-yqxagankQi7yPCR-BA/_ssgManifest.js",
-    "static/HN-yqxagankQi7yPCR-BA/_middlewareManifest.js"
+    "static/wWusU6KFlUy6BY43t5q1b/_buildManifest.js",
+    "static/wWusU6KFlUy6BY43t5q1b/_ssgManifest.js",
+    "static/wWusU6KFlUy6BY43t5q1b/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
       "static/chunks/webpack-8b5f9888ef21a7dc.js",
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-d96f6fbd5eaa9954.js",
-      "static/chunks/pages/index-ae3df3833a2b1726.js"
+      "static/chunks/pages/index-7af46b1c454fcbb3.js"
     ],
     "/404": [
       "static/chunks/webpack-8b5f9888ef21a7dc.js",
@@ -57,7 +57,7 @@
       "static/chunks/webpack-8b5f9888ef21a7dc.js",
       "static/chunks/framework-fc97f3f1282ce3ed.js",
       "static/chunks/main-d96f6fbd5eaa9954.js",
-      "static/chunks/pages/movies/[...title]-27f6761b2ddcb8c1.js"
+      "static/chunks/pages/movies/[...title]-bca5a1e06a4db61a.js"
     ],
     "/movies/all": [
       "static/chunks/webpack-8b5f9888ef21a7dc.js",
