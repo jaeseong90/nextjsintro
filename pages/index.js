@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Seo from './Seo';
+import { prefix } from '../config';
 
 export default function Home({ movies }) {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function Home({ movies }) {
 }
 
 export async function getServerSideProps() {
-  const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
+  const { results } = await (await fetch(`${prefix}/api/movies`)).json();
   return {
     props: {
       movies: results,
