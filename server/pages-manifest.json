@@ -1,11 +1,11 @@
 {
   "/404": "pages/404.html",
+  "/Seo": "pages/Seo.html",
   "/_app": "pages/_app.js",
   "/about": "pages/about.html",
+  "/movies/all": "pages/movies/all.html",
   "/movies": "pages/movies.html",
   "/_error": "pages/_error.js",
-  "/Seo": "pages/Seo.html",
-  "/movies/all": "pages/movies/all.html",
   "/": "pages/index.js",
   "/movies/[...title]": "pages/movies/[...title].js",
   "/_document": "pages/_document.js"
